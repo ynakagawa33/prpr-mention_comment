@@ -33,7 +33,7 @@ module Prpr
         end
 
         def comment
-          event.coment
+          event.comment
         end
 
         def from
