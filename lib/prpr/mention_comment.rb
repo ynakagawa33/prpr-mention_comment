@@ -1,7 +1,3 @@
 require "prpr/mention_comment/version"
-
-module Prpr
-  module MentionComment
-    # Your code goes here...
-  end
-end
+require "prpr/handler/mention_comment"
+require "prpr/action/mention_comment/mention"
