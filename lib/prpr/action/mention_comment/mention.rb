@@ -32,6 +32,8 @@ module Prpr
               [$1, $2]
             end
           }.to_h
+        rescue
+          @members ||= {}
         end
 
         def config
