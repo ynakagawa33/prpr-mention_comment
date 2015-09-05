@@ -3,7 +3,9 @@ module Prpr
     module MentionComment
       class Mention < Base
         def call
-          Publisher::Adapter::Base.broadcast message
+          if mention?
+            Publisher::Adapter::Base.broadcast message
+          end
         end
 
         private
@@ -12,10 +14,26 @@ module Prpr
           Prpr::Publisher::Message.new(body: body, from: from, room: room)
         end
 
+        def mention?
+          comment.body =~ /@[a-zA-Z0-9_]+/
+        end
+
         def body
-          event.comment.body.gsub(/@[a-zA-Z0-9_]+/) { |old|
+          <<-END
+#{comment_body}
+
+#{comment.html_url}
+          END
+        end
+
+        def comment_body
+          comment.body.gsub(/@[a-zA-Z0-9_]+/) { |old|
             members[old] || old
           }
+        end
+
+        def comment
+          event.coment
         end
 
         def from
