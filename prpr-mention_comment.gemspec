@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["mzp"]
   spec.email         = ["mzpppp@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = "Prpr plugin to notify mention comment to chat service."
+  spec.description   = "When some comment containing mention is posted, the comment request is post to chat service, too."
   spec.homepage      = "https://github.com/mzp/prpr-mention_comment"
   spec.license       = "MIT"
 
