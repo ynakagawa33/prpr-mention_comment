@@ -2,6 +2,8 @@ module Prpr
   module Action
     module MentionComment
       class Mention < Base
+        REGEXP = /@[a-zA-Z0-9_-]+/
+
         def call
           if mention?
             Publisher::Adapter::Base.broadcast message
@@ -15,7 +17,7 @@ module Prpr
         end
 
         def mention?
-          comment.body =~ /@[a-zA-Z0-9_]+/
+          comment.body =~ REGEXP
         end
 
         def body
@@ -27,7 +29,7 @@ module Prpr
         end
 
         def comment_body
-          comment.body.gsub(/@[a-zA-Z0-9_]+/) { |old|
+          comment.body.gsub(REGEXP) { |old|
             members[old] || old
           }
         end
