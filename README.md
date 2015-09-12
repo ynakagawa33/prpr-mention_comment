@@ -7,7 +7,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 # Gemfile
-gem 'prpr-mention_comment', github: 'mzp/prpr-mention_comment'
+gem 'prpr-mention_comment'
 ```
 
 ## Usage
