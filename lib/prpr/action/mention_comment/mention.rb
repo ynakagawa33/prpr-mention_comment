@@ -13,7 +13,8 @@ module Prpr
         private
 
         def message
-          Prpr::Publisher::Message.new(body: body, from: from, room: room)
+          channel = to_dm? ? reviewer_mention_name : room
+          Prpr::Publisher::Message.new(body: body, from: from, room: channel)
         end
 
         def mention?
@@ -70,6 +71,10 @@ module Prpr
 
         def repository_name
           event.repository.full_name
+        end
+
+        def to_dm?
+          env[:mention_comment_to_dm] == 'true'
         end
       end
     end
