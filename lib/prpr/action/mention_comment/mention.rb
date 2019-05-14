@@ -52,7 +52,7 @@ module Prpr
         end
 
         def mentioned_names
-          comment.body.scan(REGEXP)
+          comment.body.scan(REGEXP).uniq
         end
 
         def members
