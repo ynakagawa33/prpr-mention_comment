@@ -6,17 +6,18 @@ module Prpr
 
         def call
           if mention?
-            Publisher::Adapter::Base.broadcast message
+            messages.each do |message|
+              Publisher::Adapter::Base.broadcast message
+            end
           end
         end
 
         private
 
-        def message
-          puts members
-          mentioned_names.each do |mentioned_name|
-            room = to_dm? ? members[mentioned_name] || room() : room()
-            Prpr::Publisher::Message.new(body: body, from: from, room: room)
+        def messages
+          mentioned_names.map do |mentioned_name|
+            channel = to_dm? ? members[mentioned_name] || room : room
+            Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           end
         end
 
