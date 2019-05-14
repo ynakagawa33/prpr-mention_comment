@@ -14,6 +14,9 @@ module Prpr
 
         def message
           members.each {|github_user_name, slack_user_id| 
+            puts to_dm
+            puts room
+            puts slack_user_id
             channel = to_dm? ? slack_user_id : room
             Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           }
