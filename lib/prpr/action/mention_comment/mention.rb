@@ -13,9 +13,11 @@ module Prpr
         private
 
         def message
+          puts members
           mentioned_names.each do |mentioned_name|
-            user_id = members[mentioned_name] || mentioned_name
-            channel = to_dm? ? user_id : room
+            puts members
+            channel = to_dm? ? members[mentioned_name] || mentioned_name : room
+            puts channel
             Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           end
         end
