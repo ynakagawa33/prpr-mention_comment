@@ -66,7 +66,7 @@ module Prpr
         end
 
         def config
-          @config ||= Config::Github.new(repository_name)
+          @config ||= Config::Github.new(repository_name, 'develop')
         end
 
         def env
