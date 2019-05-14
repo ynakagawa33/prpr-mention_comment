@@ -13,7 +13,7 @@ module Prpr
         private
 
         def message
-          members.each_value do |user_id| 
+            members.each_value do |user_id|
             channel = to_dm? ? user_id : room
             Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           end
