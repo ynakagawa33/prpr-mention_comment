@@ -14,7 +14,7 @@ module Prpr
 
         def message
           mentioned_names.each do |mentioned_name|
-            channel = to_dm? ? members[mentioned_name] : room
+            channel = to_dm? ? members[mentioned_name] || mentioned_name : room
             Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           end
         end
