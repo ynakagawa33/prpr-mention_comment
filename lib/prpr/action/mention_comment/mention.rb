@@ -13,8 +13,8 @@ module Prpr
         private
 
         def message
-            members.each_value do |user_id|
-            channel = to_dm? ? user_id : room
+          mentioned_names.each do |mentioned_name|
+            channel = to_dm? ? members[mentioned_name] : room
             Prpr::Publisher::Message.new(body: body, from: from, room: channel)
           end
         end
@@ -47,6 +47,10 @@ module Prpr
 
         def room
           env[:mention_comment_room]
+        end
+
+        def mentioned_names
+          comment.body.scan(REGEXP)
         end
 
         def members
