@@ -66,7 +66,7 @@ module Prpr
         end
 
         def config
-          @config ||= Config::Github.new(repository_name, default_branch_name)
+          @config ||= Config::Github.new(repository_name, branch: default_branch_name)
         end
 
         def env
