@@ -18,7 +18,7 @@ module Prpr
           <<-END
 [Commnet on ##{issue_number} #{issue_title}](#{comment.html_url})
 #{comment_body}
-#{repository_name}
+> #{repository_name}
           END
         end
 
