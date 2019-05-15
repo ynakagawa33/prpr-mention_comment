@@ -32,7 +32,8 @@ module Prpr
 
         def comment_body
           comment.body.gsub(REGEXP) { |old|
-            members[old] || old
+            user = members[old] || old
+            "<#{user}>"
           }
         end
 
