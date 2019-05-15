@@ -21,7 +21,6 @@ To add chat service, use publisher adapter (e.g. [prpr-slack](https://github.com
 ```
 MENTION_COMMENT_ROOM - room name to post mention comment.
 MENTION_COMMENT_MEMBERS - a file name to map github username to chat service one. (Default: MEMBERS.md)
-MENTION_COMMENT_TO_DM - notify Direct Message instead of MENTION_COMMENT_ROOM. (Default: false)
 ```
 
 ## Configuration

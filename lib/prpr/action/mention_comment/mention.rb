@@ -5,32 +5,29 @@ module Prpr
         REGEXP = /@[a-zA-Z0-9_-]+/
 
         def call
-          if mention?
-            messages.each do |message|
-              Publisher::Adapter::Base.broadcast message
-            end
-          end
+          Publisher::Adapter::Base.broadcast message
         end
 
         private
 
-        def messages
-          mentioned_names.map do |mentioned_name|
-            channel = to_dm? ? members[mentioned_name] || room : room
-            Prpr::Publisher::Message.new(body: body, from: from, room: channel)
-          end
-        end
-
-        def mention?
-          comment.body =~ REGEXP
+        def message
+          Prpr::Publisher::Message.new(body: body, from: from, room: room)
         end
 
         def body
           <<-END
+[Commnet on ##{issue_number} #{issue_title}](#{comment.html_url})
 #{comment_body}
-
-#{comment.html_url}
+#{repository_name}
           END
+        end
+
+        def issue_title
+          event.issue.title
+        end
+
+        def issue_number
+          event.issue.number
         end
 
         def comment_body
@@ -49,10 +46,6 @@ module Prpr
 
         def room
           env[:mention_comment_room]
-        end
-
-        def mentioned_names
-          comment.body.scan(REGEXP).uniq
         end
 
         def members
@@ -83,10 +76,6 @@ module Prpr
 
         def default_branch_name
           event.repository.default_branch
-        end
-
-        def to_dm?
-          env[:mention_comment_to_dm] == 'true'
         end
       end
     end
