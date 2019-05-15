@@ -22,12 +22,16 @@ module Prpr
           END
         end
 
+        def issue
+          event.issue || event.pull_request
+        end
+
         def issue_title
-          event.issue.title
+          issue.title || ''
         end
 
         def issue_number
-          event.issue.number
+          issue.number || event.commit_id
         end
 
         def comment_body
