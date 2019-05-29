@@ -16,7 +16,7 @@ module Prpr
 
         def body
           <<-END
-*[Commnet on ##{issue_number} #{issue_title}](#{comment.html_url})*
+<#{comment.html_url}|Commnet on ##{issue_number} #{issue_title}>
 #{comment_body}
 > #{repository_name}
           END
